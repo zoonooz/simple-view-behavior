@@ -41,14 +41,11 @@ There are **two** ways to specify the animation when the dependency view changed
         app:dependType="y"
         app:dependTargetY="-156dp"
         app:targetAlpha="1"
-        app:targetRotateX="0"
-        app:targetX="20dp"
-        />
+        app:targetRotateX="0"/>
 ```
 
 This View will depend on the `y` positon of `@+id/app_bar`  which is AppBarLayout. View will animation from current state of AppBarLayout until
 y position of AppBarLayout is `-156dp` with the animation, View will animate alpha to `app:targetAlpha="1"` rotate x to `app:targetRotateX="0"`
-and x position `app:targetX="20dp"`
 
 **Don't forget to add** `xmlns:app="http://schemas.android.com/apk/res-auto"`
 
@@ -64,7 +61,6 @@ for example
 
 ```
 <View
-        android:visibility="invisible"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center|top"
@@ -75,8 +71,7 @@ for example
         app:dependsOn="@+id/app_bar"
         app:dependType="y"
         app:dependTargetY="-156dp"
-        app:animation="@anim/rotate"
-        />
+        app:animation="@anim/rotate"/>
 ```
 ```
 <set xmlns:android="http://schemas.android.com/apk/res/android">
@@ -87,8 +82,7 @@ for example
         android:pivotX="50%"
         android:pivotY="50%"
         android:toXScale="40dp"
-        android:toYScale="40dp"
-        />
+        android:toYScale="40dp"/>
     <rotate
         android:duration="100"
         android:fromDegrees="0"
@@ -104,6 +98,8 @@ for example
 **The output will be**
 
 <p align="center"><img src="https://raw.githubusercontent.com/zoonooz/simple-view-behavior/master/screenshot/resource.gif"/></p>
+
+### Options
 
 You can see all available option at [attrs.xml](https://github.com/zoonooz/simple-view-behavior/blob/master/library/src/main/res/values/attrs.xml)
 
