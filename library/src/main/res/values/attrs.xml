@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EasyCoordinatorView">
+        <attr name="dependsOn" format="reference"/>
+        <attr name="dependType">
+            <enum name="height" value="0"/>
+            <enum name="width" value="1"/>
+            <enum name="x" value="2"/>
+            <enum name="y" value="3"/>
+        </attr>
+
+        <attr name="dependTargetX" format="dimension"/>
+        <attr name="dependTargetY" format="dimension"/>
+        <attr name="dependTargetWidth" format="dimension"/>
+        <attr name="dependTargetHeight" format="dimension"/>
+
+        <attr name="targetX" format="dimension"/>
+        <attr name="targetY" format="dimension"/>
+        <attr name="targetWidth" format="dimension"/>
+        <attr name="targetHeight" format="dimension"/>
+        <attr name="targetBackgroundColor" format="color"/>
+        <attr name="targetAlpha" format="float"/>
+        <attr name="targetRotateX" format="float"/>
+        <attr name="targetRotateY" format="float"/>
+
+        <attr name="animation" format="reference"/>
+    </declare-styleable>
+</resources>
