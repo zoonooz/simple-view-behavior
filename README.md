@@ -72,10 +72,34 @@ for example
         app:animation="@anim/rotate"
         />
 ```
+```
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <scale
+        android:duration="100"
+        android:fromXScale="1"
+        android:fromYScale="1"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="40dp"
+        android:toYScale="40dp"
+        />
+    <rotate
+        android:duration="100"
+        android:fromDegrees="0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="360"/>
+    <alpha
+        android:duration="100"
+        android:toAlpha="0"/>
+</set>
+```
 
 The output will be
 
 <p align="center"><img src="https://raw.githubusercontent.com/zoonooz/simple-view-behavior/master/screenshot/resource.gif"/></p>
+
+You can see all available option at [attrs.xml](https://github.com/zoonooz/simple-view-behavior/blob/master/library/src/main/res/values/attrs.xml)
 
 ## Author
 
