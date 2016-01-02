@@ -7,16 +7,22 @@ This library provide you easy ways to config and setup the view behavior without
 
 <p align="center"><img src="https://raw.githubusercontent.com/zoonooz/simple-view-behavior/master/screenshot/example.gif"/></p>
 
+## Installation
+
+```
+compile 'com.zoonref:simple-view-behavior:1.0'
+```
+
 ## Usage
 You can setup behavior effect by using only xml option.
 
 1. set the layout behavior to this library class `app:layout_behavior="com.zoonref.SimpleViewBehavior"`
 2. set the dependency view by specify resource id by `app:dependsOn="@+id/{your view id}"`
 3. set the type of dependency `app:dependType="{x,y,width,height}"`
-4. set the dependency view target value `app:dependTargetY="{value}"`
+4. set the dependency view target value according to the type you choose `app:dependTargetXXX="{value}"`
 5. set the target appearance that you want your view to animate to
 
-There are two ways to specify the animation when the dependency view changed.
+There are **two** ways to specify the animation when the dependency view changed.
 
 ### 1. xml
 
@@ -44,9 +50,9 @@ This View will depend on the `y` positon of `@+id/app_bar`  which is AppBarLayou
 y position of AppBarLayout is `-156dp` with the animation, View will animate alpha to `app:targetAlpha="1"` rotate x to `app:targetRotateX="0"`
 and x position `app:targetX="20dp"`
 
-Don't forget to add `xmlns:app="http://schemas.android.com/apk/res-auto"`
+**Don't forget to add** `xmlns:app="http://schemas.android.com/apk/res-auto"`
 
-The output will be
+**The output will be**
 
 <p align="center"><img src="https://raw.githubusercontent.com/zoonooz/simple-view-behavior/master/screenshot/xml.gif"/></p>
 
@@ -95,7 +101,7 @@ for example
 </set>
 ```
 
-The output will be
+**The output will be**
 
 <p align="center"><img src="https://raw.githubusercontent.com/zoonooz/simple-view-behavior/master/screenshot/resource.gif"/></p>
 
