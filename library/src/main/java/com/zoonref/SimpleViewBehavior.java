@@ -63,14 +63,14 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
     private float mStartRotateX;
     private float mStartRotateY;
 
-    private int mTargetX;
-    private int mTargetY;
-    private int mTargetWidth;
-    private int mTargetHeight;
-    private int mTargetBackgroundColor;
-    private float mTargetAlpha;
-    private float mTargetRotateX;
-    private float mTargetRotateY;
+    public int targetX;
+    public int targetY;
+    public int targetWidth;
+    public int targetHeight;
+    public int targetBackgroundColor;
+    public float targetAlpha;
+    public float targetRotateX;
+    public float targetRotateY;
 
     private int mAnimationId;
     private Animation mAnimation;
@@ -98,14 +98,14 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
         mDependTargetY = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTargetY, UNSPECIFIED_INT);
         mDependTargetWidth = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTargetWidth, UNSPECIFIED_INT);
         mDependTargetHeight = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTargetHeight, UNSPECIFIED_INT);
-        mTargetX = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetX, UNSPECIFIED_INT);
-        mTargetY = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetY, UNSPECIFIED_INT);
-        mTargetWidth = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetWidth, UNSPECIFIED_INT);
-        mTargetHeight = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetHeight, UNSPECIFIED_INT);
-        mTargetBackgroundColor = a.getColor(R.styleable.EasyCoordinatorView_targetBackgroundColor, UNSPECIFIED_INT);
-        mTargetAlpha = a.getFloat(R.styleable.EasyCoordinatorView_targetAlpha, UNSPECIFIED_FLOAT);
-        mTargetRotateX = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateX, UNSPECIFIED_FLOAT);
-        mTargetRotateY = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateY, UNSPECIFIED_FLOAT);
+        targetX = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetX, UNSPECIFIED_INT);
+        targetY = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetY, UNSPECIFIED_INT);
+        targetWidth = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetWidth, UNSPECIFIED_INT);
+        targetHeight = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetHeight, UNSPECIFIED_INT);
+        targetBackgroundColor = a.getColor(R.styleable.EasyCoordinatorView_targetBackgroundColor, UNSPECIFIED_INT);
+        targetAlpha = a.getFloat(R.styleable.EasyCoordinatorView_targetAlpha, UNSPECIFIED_FLOAT);
+        targetRotateX = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateX, UNSPECIFIED_FLOAT);
+        targetRotateY = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateY, UNSPECIFIED_FLOAT);
         mAnimationId = a.getResourceId(R.styleable.EasyCoordinatorView_animation, 0);
         a.recycle();
     }
@@ -142,13 +142,13 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
         }
 
         // if parent fitsSystemWindows is true, add status bar height to target y if specified
-        if (Build.VERSION.SDK_INT > 16 && parent.getFitsSystemWindows() && mTargetY != UNSPECIFIED_INT) {
+        if (Build.VERSION.SDK_INT > 16 && parent.getFitsSystemWindows() && targetY != UNSPECIFIED_INT) {
             int result = 0;
             int resourceId = parent.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
             if (resourceId > 0) {
                 result = parent.getContext().getResources().getDimensionPixelSize(resourceId);
             }
-            mTargetY += result;
+            targetY += result;
         }
 
         isPrepared = true;
@@ -229,13 +229,13 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
     public void updateViewWithPercent(View child, float percent) {
         // if there is no animation set, use the attr options
         if (mAnimation == null) {
-            float newX = mTargetX == UNSPECIFIED_INT ? 0 : (mTargetX - mStartX) * percent;
-            float newY = mTargetY == UNSPECIFIED_INT ? 0 : (mTargetY - mStartY) * percent;
+            float newX = targetX == UNSPECIFIED_INT ? 0 : (targetX - mStartX) * percent;
+            float newY = targetY == UNSPECIFIED_INT ? 0 : (targetY - mStartY) * percent;
 
             // set scale
-            if (mTargetWidth != UNSPECIFIED_INT || mTargetHeight != UNSPECIFIED_INT) {
-                float newWidth = mStartWidth + ((mTargetWidth - mStartWidth) * percent);
-                float newHeight = mStartHeight + ((mTargetHeight - mStartHeight) * percent);
+            if (targetWidth != UNSPECIFIED_INT || targetHeight != UNSPECIFIED_INT) {
+                float newWidth = mStartWidth + ((targetWidth - mStartWidth) * percent);
+                float newHeight = mStartHeight + ((targetHeight - mStartHeight) * percent);
 
                 child.setScaleX(newWidth / mStartWidth);
                 child.setScaleY(newHeight / mStartHeight);
@@ -249,23 +249,23 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
             child.setTranslationY(newY);
 
             // set alpha
-            if (mTargetAlpha != UNSPECIFIED_FLOAT) {
-                child.setAlpha(mStartAlpha + (mTargetAlpha - mStartAlpha) * percent);
+            if (targetAlpha != UNSPECIFIED_FLOAT) {
+                child.setAlpha(mStartAlpha + (targetAlpha - mStartAlpha) * percent);
             }
 
             // set background color
-            if (mTargetBackgroundColor != UNSPECIFIED_INT && mStartBackgroundColor != 0) {
+            if (targetBackgroundColor != UNSPECIFIED_INT && mStartBackgroundColor != 0) {
                 ArgbEvaluator evaluator = new ArgbEvaluator();
-                int color = (int) evaluator.evaluate(percent, mStartBackgroundColor, mTargetBackgroundColor);
+                int color = (int) evaluator.evaluate(percent, mStartBackgroundColor, targetBackgroundColor);
                 child.setBackgroundColor(color);
             }
 
             // set rotation
-            if (mTargetRotateX != UNSPECIFIED_FLOAT) {
-                child.setRotationX(mStartRotateX + (mTargetRotateX - mStartRotateX) * percent);
+            if (targetRotateX != UNSPECIFIED_FLOAT) {
+                child.setRotationX(mStartRotateX + (targetRotateX - mStartRotateX) * percent);
             }
-            if (mTargetRotateY != UNSPECIFIED_FLOAT) {
-                child.setRotationX(mStartRotateY + (mTargetRotateY - mStartRotateY) * percent);
+            if (targetRotateY != UNSPECIFIED_FLOAT) {
+                child.setRotationX(mStartRotateY + (targetRotateY - mStartRotateY) * percent);
             }
         } else {
             // get the transform at the specify time in progress
