@@ -64,7 +64,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main"/>
-    
+
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -72,7 +72,7 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="50dp"
         android:elevation="10dp"
-        app:layout_behavior="com.zoonref.SimpleViewBehavior"
+        app:layout_behavior="com.zoonref.viewbehavior.SimpleViewBehavior"
         app:dependsOn="@+id/app_bar"
         app:dependType="y"
         app:dependTargetY="-176dp"
@@ -92,7 +92,7 @@
         android:gravity="center_vertical"
         android:textColor="@android:color/white"
         android:alpha="0"
-        app:layout_behavior="com.zoonref.SimpleViewBehavior"
+        app:layout_behavior="com.zoonref.viewbehavior.SimpleViewBehavior"
         app:dependsOn="@+id/app_bar"
         app:dependType="y"
         app:dependTargetY="-206dp"
