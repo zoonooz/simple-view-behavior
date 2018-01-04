@@ -2,8 +2,10 @@ package com.zoonref.viewbehavior;
 
 import android.animation.ArgbEvaluator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
@@ -117,7 +119,7 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
      * @param child      view that will move when dependency changed
      * @param dependency dependency view
      */
-    private void prepare(CoordinatorLayout parent, View child, View dependency) {
+    void prepare(CoordinatorLayout parent, View child, View dependency) {
         mDependStartX = (int) dependency.getX();
         mDependStartY = (int) dependency.getY();
         mDependStartWidth = dependency.getWidth();
@@ -131,22 +133,24 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
         mStartRotateY = child.getRotationY();
 
         // only set the start background color when the background is color drawable
-        if (child.getBackground() instanceof ColorDrawable) {
-            mStartBackgroundColor = ((ColorDrawable) child.getBackground()).getColor();
+        Drawable background = child.getBackground();
+        if (background instanceof ColorDrawable) {
+            mStartBackgroundColor = ((ColorDrawable) background).getColor();
         }
 
         // if there is animation id, load it and initialize
         if (mAnimationId != 0) {
             mAnimation = AnimationUtils.loadAnimation(child.getContext(), mAnimationId);
-            mAnimation.initialize(child.getWidth(), child.getHeight(), parent.getWidth(), parent.getHeight());
+            mAnimation.initialize(mStartWidth, mStartHeight, parent.getWidth(), parent.getHeight());
         }
 
         // if parent fitsSystemWindows is true, add status bar height to target y if specified
         if (Build.VERSION.SDK_INT > 16 && parent.getFitsSystemWindows() && targetY != UNSPECIFIED_INT) {
             int result = 0;
-            int resourceId = parent.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+            Resources resources = parent.getContext().getResources();
+            int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
             if (resourceId > 0) {
-                result = parent.getContext().getResources().getDimensionPixelSize(resourceId);
+                result = resources.getDimensionPixelSize(resourceId);
             }
             targetY += result;
         }
@@ -185,7 +189,7 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
      * @param child      child view
      * @param dependency dependency view
      */
-    public void updateView(View child, View dependency) {
+    void updateView(View child, View dependency) {
         float percent = 0;
         float start = 0;
         float current = 0;
@@ -226,7 +230,7 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
      * @param child   child view
      * @param percent progress of dependency changed 0.0f to 1.0f
      */
-    public void updateViewWithPercent(View child, float percent) {
+    void updateViewWithPercent(View child, float percent) {
         // if there is no animation set, use the attr options
         if (mAnimation == null) {
             float newX = targetX == UNSPECIFIED_INT ? 0 : (targetX - mStartX) * percent;
@@ -288,7 +292,7 @@ public class SimpleViewBehavior extends CoordinatorLayout.Behavior<View> {
 
         private Transformation mTransformation;
 
-        public BehaviorAnimation(Transformation transformation) {
+        BehaviorAnimation(Transformation transformation) {
             mTransformation = transformation;
             // always set duration to zero and fill after
             setDuration(0);
