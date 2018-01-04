@@ -1,4 +1,4 @@
-package com.zoonref;
+package com.zoonref.viewbehavior;
 
 import android.animation.ArgbEvaluator;
 import android.content.Context;

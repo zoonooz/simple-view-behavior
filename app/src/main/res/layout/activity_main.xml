@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.zoonref.demo.MainActivity">
+    tools:context="com.zoonref.demo.DemoActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -44,12 +44,11 @@
         android:layout_marginTop="80dp"
         android:elevation="10dp"
         android:background="@android:color/holo_orange_dark"
-        app:layout_behavior="com.zoonref.SimpleViewBehavior"
+        app:layout_behavior="com.zoonref.viewbehavior.SimpleViewBehavior"
         app:dependsOn="@+id/app_bar"
         app:dependType="y"
         app:dependTargetY="-156dp"
-        app:animation="@anim/rotate"
-        />
+        app:animation="@anim/rotate"/>
 
     <View
         android:layout_width="40dp"
@@ -60,13 +59,12 @@
         android:elevation="10dp"
         android:background="@android:color/holo_blue_bright"
         android:alpha="0"
-        app:layout_behavior="com.zoonref.SimpleViewBehavior"
+        app:layout_behavior="com.zoonref.viewbehavior.SimpleViewBehavior"
         app:dependsOn="@+id/app_bar"
         app:dependType="y"
         app:dependTargetY="-156dp"
         app:targetAlpha="1"
         app:targetRotateX="0"
-        app:targetX="20dp"
-        />
+        app:targetX="20dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

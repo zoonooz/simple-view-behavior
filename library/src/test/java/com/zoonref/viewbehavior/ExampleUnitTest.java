@@ -1,4 +1,4 @@
-package com.zoonref.zoonref;
+package com.zoonref.simpleviewbehavior;
 
 import org.junit.Test;
 

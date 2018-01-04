@@ -1,4 +1,4 @@
-package com.zoonref;
+package com.zoonref.simpleviewbehavior;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
