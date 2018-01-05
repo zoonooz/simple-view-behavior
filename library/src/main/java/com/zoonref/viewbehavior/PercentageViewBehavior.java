@@ -2,6 +2,8 @@ package com.zoonref.viewbehavior;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
@@ -18,30 +20,27 @@ public abstract class PercentageViewBehavior<V extends View> extends Coordinator
     /**
      * Depend on the dependency view height
      */
-    private static final int DEPEND_TYPE_HEIGHT = 0;
+    public static final int DEPEND_TYPE_HEIGHT = 0;
 
     /**
      * Depend on the dependency view width
      */
-    private static final int DEPEND_TYPE_WIDTH = 1;
+    public static final int DEPEND_TYPE_WIDTH = 1;
 
     /**
      * Depend on the dependency view x position
      */
-    private static final int DEPEND_TYPE_X = 2;
+    public static final int DEPEND_TYPE_X = 2;
 
     /**
      * Depend on the dependency view y position
      */
-    private static final int DEPEND_TYPE_Y = 3;
+    public static final int DEPEND_TYPE_Y = 3;
 
     private int mDependType;
     private int mDependViewId;
 
-    private int mDependTargetX;
-    private int mDependTargetY;
-    private int mDependTargetWidth;
-    private int mDependTargetHeight;
+    private int mDependTarget;
 
     private int mDependStartX;
     private int mDependStartY;
@@ -67,11 +66,14 @@ public abstract class PercentageViewBehavior<V extends View> extends Coordinator
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasyCoordinatorView);
         mDependViewId = a.getResourceId(R.styleable.EasyCoordinatorView_dependsOn, 0);
         mDependType = a.getInt(R.styleable.EasyCoordinatorView_dependType, DEPEND_TYPE_WIDTH);
-        mDependTargetX = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTargetX, UNSPECIFIED_INT);
-        mDependTargetY = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTargetY, UNSPECIFIED_INT);
-        mDependTargetWidth = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTargetWidth, UNSPECIFIED_INT);
-        mDependTargetHeight = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTargetHeight, UNSPECIFIED_INT);
+        mDependTarget = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTarget, UNSPECIFIED_INT);
         a.recycle();
+    }
+
+    PercentageViewBehavior(@NonNull Builder builder) {
+        mDependViewId = builder.dependsOn;
+        mDependType = builder.dependsType;
+        mDependTarget = builder.targetValue;
     }
 
     /**
@@ -130,22 +132,22 @@ public abstract class PercentageViewBehavior<V extends View> extends Coordinator
             case DEPEND_TYPE_WIDTH:
                 start = mDependStartWidth;
                 current = dependency.getWidth();
-                end = mDependTargetWidth;
+                end = mDependTarget;
                 break;
             case DEPEND_TYPE_HEIGHT:
                 start = mDependStartHeight;
                 current = dependency.getHeight();
-                end = mDependTargetHeight;
+                end = mDependTarget;
                 break;
             case DEPEND_TYPE_X:
                 start = mDependStartX;
                 current = dependency.getX();
-                end = mDependTargetX;
+                end = mDependTarget;
                 break;
             case DEPEND_TYPE_Y:
                 start = mDependStartY;
                 current = dependency.getY();
-                end = mDependTargetY;
+                end = mDependTarget;
                 break;
         }
 
@@ -163,4 +165,27 @@ public abstract class PercentageViewBehavior<V extends View> extends Coordinator
      * @param percent progress of dependency changed 0.0f to 1.0f
      */
     abstract void updateViewWithPercent(V child, float percent);
+
+    /**
+     * Builder class
+     */
+    static abstract class Builder<T extends Builder> {
+
+        private int dependsOn;
+        private int dependsType = UNSPECIFIED_INT;
+        private int targetValue = UNSPECIFIED_INT;
+
+        abstract T getThis();
+
+        T dependsOn(@IdRes int dependsOn, int dependsType) {
+            this.dependsOn = dependsOn;
+            this.dependsType = dependsType;
+            return getThis();
+        }
+
+        T targetValue(int targetValue) {
+            this.targetValue = targetValue;
+            return getThis();
+        }
+    }
 }

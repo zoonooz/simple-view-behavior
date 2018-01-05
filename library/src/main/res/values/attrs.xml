@@ -9,10 +9,7 @@
             <enum name="y" value="3"/>
         </attr>
 
-        <attr name="dependTargetX" format="dimension"/>
-        <attr name="dependTargetY" format="dimension"/>
-        <attr name="dependTargetWidth" format="dimension"/>
-        <attr name="dependTargetHeight" format="dimension"/>
+        <attr name="dependTarget" format="dimension"/>
 
         <attr name="targetX" format="dimension"/>
         <attr name="targetY" format="dimension"/>
