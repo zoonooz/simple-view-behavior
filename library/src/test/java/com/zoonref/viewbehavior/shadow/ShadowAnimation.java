@@ -6,7 +6,6 @@ import android.view.animation.Transformation;
 import org.robolectric.annotation.Implementation;
 import org.robolectric.annotation.Implements;
 import org.robolectric.annotation.RealObject;
-import org.robolectric.shadow.api.Shadow;
 
 /**
  * Created by zoonooz on 6/1/2018 AD.
@@ -24,7 +23,7 @@ public class ShadowAnimation {
     @Implementation
     public boolean getTransformation(long currentTime, Transformation outTransformation) {
         lastTimeGetTransform = currentTime;
-        return Shadow.directlyOn(realAnimation, Animation.class).getTransformation(currentTime, outTransformation);
+        return false;
     }
 
     public long getLastTimeGetTransform() {
