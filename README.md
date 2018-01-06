@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zoonooz/simple-view-behavior.svg?branch=master)](https://travis-ci.org/zoonooz/simple-view-behavior)
+
 # simple-view-behavior
 
 Simple View Behavior for Android [CoordinatorLayout](http://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html).

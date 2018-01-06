@@ -7,6 +7,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
@@ -26,14 +27,14 @@ public class SimpleViewBehavior extends PercentageViewBehavior<View> {
     private float mStartRotateX;
     private float mStartRotateY;
 
-    public int targetX;
-    public int targetY;
-    public int targetWidth;
-    public int targetHeight;
-    public int targetBackgroundColor;
-    public float targetAlpha;
-    public float targetRotateX;
-    public float targetRotateY;
+    private int targetX;
+    private int targetY;
+    private int targetWidth;
+    private int targetHeight;
+    private int targetBackgroundColor;
+    private float targetAlpha;
+    private float targetRotateX;
+    private float targetRotateY;
 
     /**
      * Creates a new behavior whose parameters come from the specified context and
@@ -56,6 +57,18 @@ public class SimpleViewBehavior extends PercentageViewBehavior<View> {
         targetRotateX = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateX, UNSPECIFIED_FLOAT);
         targetRotateY = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateY, UNSPECIFIED_FLOAT);
         a.recycle();
+    }
+
+    private SimpleViewBehavior(@NonNull Builder builder) {
+        super(builder);
+        targetX = builder.targetX;
+        targetY = builder.targetY;
+        targetWidth = builder.targetWidth;
+        targetHeight = builder.targetHeight;
+        targetBackgroundColor = builder.targetBackgroundColor;
+        targetAlpha = builder.targetAlpha;
+        targetRotateX = builder.targetRotateX;
+        targetRotateY = builder.targetRotateY;
     }
 
     @Override
@@ -126,9 +139,73 @@ public class SimpleViewBehavior extends PercentageViewBehavior<View> {
             child.setRotationX(mStartRotateX + (targetRotateX - mStartRotateX) * percent);
         }
         if (targetRotateY != UNSPECIFIED_FLOAT) {
-            child.setRotationX(mStartRotateY + (targetRotateY - mStartRotateY) * percent);
+            child.setRotationY(mStartRotateY + (targetRotateY - mStartRotateY) * percent);
         }
 
         child.requestLayout();
+    }
+
+    /**
+     * Builder
+     */
+    public static class Builder extends PercentageViewBehavior.Builder<Builder> {
+
+        private int targetX = UNSPECIFIED_INT;
+        private int targetY = UNSPECIFIED_INT;
+        private int targetWidth = UNSPECIFIED_INT;
+        private int targetHeight = UNSPECIFIED_INT;
+        private int targetBackgroundColor = UNSPECIFIED_INT;
+        private float targetAlpha = UNSPECIFIED_FLOAT;
+        private float targetRotateX = UNSPECIFIED_FLOAT;
+        private float targetRotateY = UNSPECIFIED_FLOAT;
+
+        @Override
+        Builder getThis() {
+            return this;
+        }
+
+        public Builder targetX(int targetX) {
+            this.targetX = targetX;
+            return this;
+        }
+
+        public Builder targetY(int targetY) {
+            this.targetY = targetY;
+            return this;
+        }
+
+        public Builder targetWidth(int targetWidth) {
+            this.targetWidth = targetWidth;
+            return this;
+        }
+
+        public Builder targetHeight(int targetHeight) {
+            this.targetHeight = targetHeight;
+            return this;
+        }
+
+        public Builder targetBackgroundColor(int targetBackgroundColor) {
+            this.targetBackgroundColor = targetBackgroundColor;
+            return this;
+        }
+
+        public Builder targetAlpha(int targetAlpha) {
+            this.targetAlpha = targetAlpha;
+            return this;
+        }
+
+        public Builder targetRotateX(int targetRotateX) {
+            this.targetRotateX = targetRotateX;
+            return this;
+        }
+
+        public Builder targetRotateY(int targetRotateY) {
+            this.targetRotateY = targetRotateY;
+            return this;
+        }
+
+        public SimpleViewBehavior build() {
+            return new SimpleViewBehavior(this);
+        }
     }
 }
