@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="EasyCoordinatorView">
-        <attr name="dependsOn" format="reference"/>
-        <attr name="dependType">
+    <declare-styleable name="ViewBehavior">
+        <attr name="behavior_dependsOn" format="reference"/>
+        <attr name="behavior_dependType">
             <enum name="height" value="0"/>
             <enum name="width" value="1"/>
             <enum name="x" value="2"/>
             <enum name="y" value="3"/>
         </attr>
 
-        <attr name="dependTarget" format="dimension"/>
+        <attr name="behavior_dependTarget" format="dimension"/>
 
-        <attr name="targetX" format="dimension"/>
-        <attr name="targetY" format="dimension"/>
-        <attr name="targetWidth" format="dimension"/>
-        <attr name="targetHeight" format="dimension"/>
-        <attr name="targetBackgroundColor" format="color"/>
-        <attr name="targetAlpha" format="float"/>
-        <attr name="targetRotateX" format="float"/>
-        <attr name="targetRotateY" format="float"/>
+        <attr name="behavior_targetX" format="dimension"/>
+        <attr name="behavior_targetY" format="dimension"/>
+        <attr name="behavior_targetWidth" format="dimension"/>
+        <attr name="behavior_targetHeight" format="dimension"/>
+        <attr name="behavior_targetBackgroundColor" format="color"/>
+        <attr name="behavior_targetAlpha" format="float"/>
+        <attr name="behavior_targetRotateX" format="float"/>
+        <attr name="behavior_targetRotateY" format="float"/>
 
-        <attr name="animation" format="reference"/>
+        <attr name="behavior_animation" format="reference"/>
     </declare-styleable>
 </resources>
