@@ -73,13 +73,13 @@
         android:layout_marginTop="50dp"
         android:elevation="10dp"
         app:layout_behavior="@string/simple_view_behavior"
-        app:dependsOn="@+id/app_bar"
-        app:dependType="y"
-        app:dependTarget="-176dp"
-        app:targetX="16dp"
-        app:targetY="8dp"
-        app:targetWidth="40dp"
-        app:targetHeight="40dp"/>
+        app:behavior_dependsOn="@+id/app_bar"
+        app:behavior_dependType="y"
+        app:behavior_dependTarget="-176dp"
+        app:behavior_targetX="16dp"
+        app:behavior_targetY="8dp"
+        app:behavior_targetWidth="40dp"
+        app:behavior_targetHeight="40dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,10 +93,10 @@
         android:textColor="@android:color/white"
         android:alpha="0"
         app:layout_behavior="@string/simple_view_behavior"
-        app:dependsOn="@+id/app_bar"
-        app:dependType="y"
-        app:dependTarget="-206dp"
-        app:targetY="0dp"
-        app:targetAlpha="1"/>
+        app:behavior_dependsOn="@+id/app_bar"
+        app:behavior_dependType="y"
+        app:behavior_dependTarget="-206dp"
+        app:behavior_targetY="0dp"
+        app:behavior_targetAlpha="1"/>
 
 </android.support.design.widget.CoordinatorLayout>

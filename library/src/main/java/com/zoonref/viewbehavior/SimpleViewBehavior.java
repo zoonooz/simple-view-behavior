@@ -47,15 +47,15 @@ public class SimpleViewBehavior extends PercentageViewBehavior<View> {
         super(context, attrs);
 
         // setting values
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasyCoordinatorView);
-        targetX = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetX, UNSPECIFIED_INT);
-        targetY = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetY, UNSPECIFIED_INT);
-        targetWidth = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetWidth, UNSPECIFIED_INT);
-        targetHeight = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_targetHeight, UNSPECIFIED_INT);
-        targetBackgroundColor = a.getColor(R.styleable.EasyCoordinatorView_targetBackgroundColor, UNSPECIFIED_INT);
-        targetAlpha = a.getFloat(R.styleable.EasyCoordinatorView_targetAlpha, UNSPECIFIED_FLOAT);
-        targetRotateX = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateX, UNSPECIFIED_FLOAT);
-        targetRotateY = a.getFloat(R.styleable.EasyCoordinatorView_targetRotateY, UNSPECIFIED_FLOAT);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ViewBehavior);
+        targetX = a.getDimensionPixelOffset(R.styleable.ViewBehavior_behavior_targetX, UNSPECIFIED_INT);
+        targetY = a.getDimensionPixelOffset(R.styleable.ViewBehavior_behavior_targetY, UNSPECIFIED_INT);
+        targetWidth = a.getDimensionPixelOffset(R.styleable.ViewBehavior_behavior_targetWidth, UNSPECIFIED_INT);
+        targetHeight = a.getDimensionPixelOffset(R.styleable.ViewBehavior_behavior_targetHeight, UNSPECIFIED_INT);
+        targetBackgroundColor = a.getColor(R.styleable.ViewBehavior_behavior_targetBackgroundColor, UNSPECIFIED_INT);
+        targetAlpha = a.getFloat(R.styleable.ViewBehavior_behavior_targetAlpha, UNSPECIFIED_FLOAT);
+        targetRotateX = a.getFloat(R.styleable.ViewBehavior_behavior_targetRotateX, UNSPECIFIED_FLOAT);
+        targetRotateY = a.getFloat(R.styleable.ViewBehavior_behavior_targetRotateY, UNSPECIFIED_FLOAT);
         a.recycle();
     }
 

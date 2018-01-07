@@ -45,10 +45,10 @@
         android:elevation="10dp"
         android:background="@android:color/holo_orange_dark"
         app:layout_behavior="@string/animation_view_behavior"
-        app:dependsOn="@+id/app_bar"
-        app:dependType="y"
-        app:dependTarget="-156dp"
-        app:animation="@anim/rotate"/>
+        app:behavior_dependsOn="@+id/app_bar"
+        app:behavior_dependType="y"
+        app:behavior_dependTarget="-156dp"
+        app:behavior_animation="@anim/rotate"/>
 
     <View
         android:layout_width="40dp"
@@ -60,11 +60,11 @@
         android:background="@android:color/holo_blue_bright"
         android:alpha="0"
         app:layout_behavior="@string/simple_view_behavior"
-        app:dependsOn="@+id/app_bar"
-        app:dependType="y"
-        app:dependTarget="-156dp"
-        app:targetAlpha="1"
-        app:targetRotateX="0"
-        app:targetX="20dp"/>
+        app:behavior_dependsOn="@+id/app_bar"
+        app:behavior_dependType="y"
+        app:behavior_dependTarget="-156dp"
+        app:behavior_targetAlpha="1"
+        app:behavior_targetRotateX="0"
+        app:behavior_targetX="20dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

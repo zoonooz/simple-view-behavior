@@ -63,10 +63,10 @@ public abstract class PercentageViewBehavior<V extends View> extends Coordinator
         super(context, attrs);
 
         // setting values
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasyCoordinatorView);
-        mDependViewId = a.getResourceId(R.styleable.EasyCoordinatorView_dependsOn, 0);
-        mDependType = a.getInt(R.styleable.EasyCoordinatorView_dependType, DEPEND_TYPE_WIDTH);
-        mDependTarget = a.getDimensionPixelOffset(R.styleable.EasyCoordinatorView_dependTarget, UNSPECIFIED_INT);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ViewBehavior);
+        mDependViewId = a.getResourceId(R.styleable.ViewBehavior_behavior_dependsOn, 0);
+        mDependType = a.getInt(R.styleable.ViewBehavior_behavior_dependType, DEPEND_TYPE_WIDTH);
+        mDependTarget = a.getDimensionPixelOffset(R.styleable.ViewBehavior_behavior_dependTarget, UNSPECIFIED_INT);
         a.recycle();
     }
 

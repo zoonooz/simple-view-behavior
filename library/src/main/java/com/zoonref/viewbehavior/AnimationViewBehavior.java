@@ -21,8 +21,8 @@ public class AnimationViewBehavior extends PercentageViewBehavior<View> {
 
     public AnimationViewBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasyCoordinatorView);
-        int animationId = a.getResourceId(R.styleable.EasyCoordinatorView_animation, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ViewBehavior);
+        int animationId = a.getResourceId(R.styleable.ViewBehavior_behavior_animation, 0);
         a.recycle();
 
         if (animationId != 0) {
