@@ -103,6 +103,8 @@ public class SimpleViewBehavior extends PercentageViewBehavior<View> {
 
     @Override
     void updateViewWithPercent(View child, float percent) {
+        super.updateViewWithPercent(child, percent);
+
         float newX = targetX == UNSPECIFIED_INT ? 0 : (targetX - mStartX) * percent;
         float newY = targetY == UNSPECIFIED_INT ? 0 : (targetY - mStartY) * percent;
 

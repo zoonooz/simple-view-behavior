@@ -1,43 +1,18 @@
 package com.zoonref.viewbehavior;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.CoordinatorLayout;
-import android.view.View;
 
 import static junit.framework.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
 
 /**
  * Created by zoonooz on 5/1/2018 AD.
  * Test {@link SimpleViewBehavior}
  */
-@RunWith(RobolectricTestRunner.class)
-public class SimpleViewBehaviorTest {
-
-    private CoordinatorLayout coordinatorLayout;
-    private View firstView;
-    private View secondView;
-
-    @Before
-    public void setup() {
-        Activity activity = Robolectric.setupActivity(Activity.class);
-        activity.setTheme(R.style.Theme_AppCompat);
-        coordinatorLayout = new CoordinatorLayout(activity);
-        activity.setContentView(coordinatorLayout);
-        firstView = new View(activity);
-        secondView = new View(activity);
-
-        CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(320, 200);
-        coordinatorLayout.addView(firstView, params);
-        coordinatorLayout.addView(secondView, params);
-    }
+public class SimpleViewBehaviorTest extends BehaviorTest {
 
     @Test
     public void dependsOnX_targetXAndY() {

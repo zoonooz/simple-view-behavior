@@ -12,7 +12,7 @@ import android.view.View;
  * Created by zoonooz on 5/1/2018 AD.
  * Base behavior for percentage driven behaviors.
  */
-public abstract class PercentageViewBehavior<V extends View> extends CoordinatorLayout.Behavior<V> {
+public class PercentageViewBehavior<V extends View> extends CoordinatorLayout.Behavior<V> {
 
     static final int UNSPECIFIED_INT = Integer.MAX_VALUE;
     static final float UNSPECIFIED_FLOAT = Float.MAX_VALUE;
@@ -164,7 +164,11 @@ public abstract class PercentageViewBehavior<V extends View> extends Coordinator
      * @param child   child view
      * @param percent progress of dependency changed 0.0f to 1.0f
      */
-    abstract void updateViewWithPercent(V child, float percent);
+    void updateViewWithPercent(V child, float percent) {
+        if (child instanceof PercentageChildView) {
+            ((PercentageChildView) child).onPercentageBehaviorChange(this, percent);
+        }
+    }
 
     /**
      * Builder class
