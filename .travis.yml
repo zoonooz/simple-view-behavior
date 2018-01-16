@@ -4,10 +4,15 @@ android:
     - tools
     - platform-tools
     - tools
-
     - build-tools-27.0.2
     - android-27
+  licenses:
+    - 'android-sdk-license-.+'
 
+# workaround for android-27
+before_install:
+  - yes | sdkmanager "platforms;android-27"
+  
 script:
   - ./gradlew test
 

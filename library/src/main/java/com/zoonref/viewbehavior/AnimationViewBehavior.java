@@ -48,6 +48,7 @@ public class AnimationViewBehavior extends PercentageViewBehavior<View> {
 
     @Override
     void updateViewWithPercent(View child, float percent) {
+        super.updateViewWithPercent(child, percent);
         if (mAnimation != null) {
             // get the transform at the specify time in progress
             Transformation transformation = new Transformation();
