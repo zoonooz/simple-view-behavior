@@ -9,6 +9,10 @@ android:
   licenses:
     - 'android-sdk-license-.+'
 
+# workaround for android-27
+before_install:
+  - yes | sdkmanager "platforms;android-27"
+  
 script:
   - ./gradlew test
 
